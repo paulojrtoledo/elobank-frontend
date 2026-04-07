@@ -10,8 +10,6 @@ export function LoginPage() {
 
   function handleSubmit(e: React.SyntheticEvent<HTMLFormElement>) {
     e.preventDefault();
-    console.log(cpf, password) // temporary console.log
-
     if (cpf.length !== 11 || !/^\d+$/.test(cpf)) {
       setError("O CPF digitado precisa ter 11 dígitos numéricos")
       return;
@@ -22,6 +20,7 @@ export function LoginPage() {
       return;
     } 
       setError(null)
+      console.log(cpf, password) // temporary console.log
   }
 
   return (
