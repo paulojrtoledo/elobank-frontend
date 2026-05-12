@@ -1,140 +1,152 @@
-# Spendly 💰 — Frontend
+Spendly 💰 — Frontend
 
-**Spendly** is a personal finance management platform under development, built with a focus on scalability, clean architecture, and real-world usability.
+Spendly is a personal finance management platform under active development, built with a focus on scalability, clean architecture and real-world application structure.
 
-Originally designed as a digital banking simulation (Elo Bank), the project evolved into Spendly to better represent a practical financial product, focused on expense tracking, organization, and user-centered features.
+The frontend was designed to simulate the experience of a modern financial platform, emphasizing authentication flows, protected routes, API integration and maintainable frontend architecture.
 
-> 🚧 **Project Status:** Active development
+🚧 Project Status: Active Development
 
----
+🎯 Project Goal
 
-## 🎯 Project Goal
+The goal of Spendly is to build a realistic full stack financial application focused on:
 
-Build a full stack application from scratch that demonstrates:
+Modern frontend architecture
+Secure authentication flows
+Backend integration with JWT
+Scalable React application structure
+Real-world user experience
+Clean and maintainable code practices
+🚀 Tech Stack
+React 19
+TypeScript
+Vite
+Tailwind CSS v4
+React Router DOM v7
+Axios
+Context API
+🧠 Domain Direction
 
-- Mastery of **React, TypeScript, and modern frontend ecosystem**
-- Clean component architecture and best practices
-- Integration with a secure backend (**JWT-based authentication**)
-- Ability to design and implement a real-world application
+Spendly was originally created as a digital banking simulation project and later evolved into a personal finance management platform.
 
----
+This transition allowed the project to:
 
-## 🚀 Tech Stack
+Represent a more realistic product scenario
+Improve portfolio relevance
+Focus on financial organization workflows
+Enable future features such as dashboards, expense tracking and financial insights
+Maintain strong technical architecture while improving product direction
+🧱 Current Stage
 
-- **React 19**
-- **TypeScript**
-- **Vite**
-- **Tailwind CSS v4**
-- **React Router DOM v7**
-- **Axios**
+The frontend currently includes:
 
----
+Complete authentication flow
+Protected and public route system
+Authentication persistence
+Backend integration with JWT
+Context-based authentication architecture
+User session handling
+Dashboard structure
+API communication layer with Axios
+Form validation and error handling
 
-## 🧠 Domain Direction (Elo Bank → Spendly)
+The application continues evolving toward a complete personal finance platform integrated with the Spendly backend.
 
-The project was initially built as a digital banking frontend to simulate real banking operations.
+✅ Progress
+Phase 1 — Authentication System (Completed)
+Implemented features
+Project structure setup
+Login page
+Register page
+CPF and password validation
+Axios API client
+JWT authentication flow
+Authentication persistence with localStorage
+Axios interceptor for protected requests
+Backend integration with Spring Boot API
+Error handling and validation feedback
+Auth context architecture
+Route protection system
+Dashboard initialization flow
+🔐 Authentication Architecture
 
-It was later refactored into **Spendly**, a personal finance platform, to:
+The authentication system was structured using React Context API and protected routing.
 
-- Focus on a more realistic and widely used product
-- Improve portfolio relevance and real-world applicability
-- Enable future features such as expense tracking, dashboards, and financial insights
-- Maintain the technical structure while evolving the domain
+Implemented components
+Component	Responsibility
+AuthContext	Global authentication state
+ProtectedRoute	Blocks unauthenticated access
+PublicRoute	Prevents authenticated users from accessing public pages
+Axios Interceptor	Automatically attaches JWT token
+DashboardPage	Initial authenticated area
+🔐 Authentication Flow
+User submits CPF and password
+Frontend sends request to backend
+Backend validates credentials
+JWT token is returned
+Token is stored locally
+AuthContext hydrates authentication state
+Protected routes become accessible
+Axios automatically attaches Authorization header
+🌐 API Integration
 
----
+The frontend communicates directly with the Spendly backend API.
 
-## ✅ Progress
+Login
 
-### Phase 1 — Authentication (Completed)
+POST /auth/login
 
-- Project structure setup
-- Login page with CPF and password validation
-- Controlled inputs with React state
-- API client configuration (Axios)
-- Customer registration page
-- Integration with backend (`POST /customers`)
-- Form validation aligned with backend rules
-- Error handling with API responses
-- Login integration with backend (`POST /auth/login`)
-- JWT token storage (`localStorage`)
-- Axios interceptor attaching `Authorization: Bearer <token>`
-- Authentication flow fully integrated with backend
-
----
-
-### Phase 2 — Core Features (In progress)
-
-- Initial dashboard structure
-- Fetch authenticated user data (`GET /customers/me`)
-- Financial transactions (future: income/expense tracking)
-- Transaction history
-- Additional personal finance modules
-
----
-
-## 🔐 Authentication Flow
-
-1. User submits CPF and password  
-2. Frontend calls `POST /auth/login`  
-3. Backend returns JWT token  
-4. Token is stored in `localStorage`  
-5. Axios interceptor attaches `Authorization: Bearer <token>`  
-6. Backend validates the token and identifies the user  
-
----
-
-## 🌐 API Integration
-
-### Login
-
-- Endpoint: `POST /auth/login`
-
-**Request:**
-```json
+Request
 {
   "cpf": "12345678901",
   "password": "123456"
 }
-
-Response:
-
+Response
 {
   "token": "eyJhbGciOiJIUzI1NiJ9...",
   "type": "Bearer"
 }
 Register Customer
-Endpoint: POST /customers
+
+POST /customers
+
+Request
+{
+  "name": "Paulo Emilio",
+  "cpf": "12345678901",
+  "password": "123456",
+  "email": "paulo@email.com"
+}
+Current Authenticated User
+
+GET /customers/me
+
+Headers
+Authorization: Bearer <JWT_TOKEN>
+🧠 Frontend Concepts Applied
+Context API state management
+Protected route architecture
+Separation of concerns
+Typed API communication
+Form validation
+Authentication persistence
+Reusable service layer
+React hooks architecture
+Scalable folder organization
+📦 Running Locally
+Clone repository
+git clone https://github.com/pauloemilio-tech/spendly-frontend.git
+Navigate to project folder
+cd spendly-frontend
+Install dependencies
+npm install
+Run development server
+npm run dev
 🔗 Related Repository
 
-Backend:
-https://github.com/paulojrtoledo/spendly-backend
+Backend Repository:
 
-📦 How to run locally
-# Clone the repository
-git clone https://github.com/paulojrtoledo/spendly-frontend.git
+https://github.com/pauloemilio-tech/spendly-backend
 
-# Access the folder
-cd spendly-frontend
-
-# Install dependencies
-npm install
-
-# Run development server
-npm run dev
 👤 Author
 
-Paulo Emilio de Toledo Jr
-
-
----
-
-## 🚀 Agora faz isso
-
-1. Substitui o README inteiro
-2. Salva
-3. Resolve o conflito:
-
-```bash
-git add README.md
-git rebase --continue
-git push origin main
+Paulo Emilio de Toledo Jr.
