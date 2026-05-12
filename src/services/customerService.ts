@@ -1,4 +1,5 @@
 import { apiClient } from "../lib/apiClient";
+import type { User } from "../types/auth";
 
 type CreateCustomerRequest = {
   name: string;
@@ -7,17 +8,12 @@ type CreateCustomerRequest = {
   email: string;
 };
 
-type CreateCustomerResponse = {
-  id: number;
-  name: string;
-  email: string;
-};
+export async function createCustomer(data: CreateCustomerRequest): Promise<User> {
+  const response = await apiClient.post<User>("/customers", data);
+  return response.data;
+}
 
-export async function createCustomer(data: CreateCustomerRequest) {
-  const response = await apiClient.post<CreateCustomerResponse>(
-    "/customers",
-    data
-  );
-
+export async function getMe(): Promise<User> {
+  const response = await apiClient.get<User>("/customers/me");
   return response.data;
 }

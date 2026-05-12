@@ -1,12 +1,12 @@
 import { isAxiosError } from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import * as customerService from "../services/customerService";
+import { useAuth } from "../contexts/AuthContext";
 
 type ApiErrorResponse = {
-    message: string;
-    status: number;
-    timestamp: string;
+  message: string;
+  status: number;
+  timestamp: string;
 };
 
 export function RegisterPage() {
@@ -16,6 +16,7 @@ export function RegisterPage() {
   const [email, setEmail] = useState("");
   const [error, setError] = useState<string | null>(null);
 
+  const { register } = useAuth();
   const navigate = useNavigate();
 
   async function handleSubmit(e: React.SyntheticEvent<HTMLFormElement>) {
@@ -43,7 +44,7 @@ export function RegisterPage() {
 
     try {
       setError(null);
-      await customerService.createCustomer({ name, cpf, password, email });
+      await register(name, cpf, password, email);
       navigate("/login");
     } catch (err) {
       if (isAxiosError<ApiErrorResponse>(err) && err.response?.data?.message) {

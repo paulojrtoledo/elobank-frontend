@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { login } from "../services/authService";
-import axios from "axios";
+import { isAxiosError } from "axios";
+import { useAuth } from "../contexts/AuthContext";
 
 export function LoginPage() {
+  const { login } = useAuth();
   const [cpf, setCpf] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
-  const [success, setSuccess] = useState<string | null>(null);
 
   async function handleSubmit(e: React.SyntheticEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -25,16 +25,11 @@ export function LoginPage() {
     setError(null);
 
     try {
-      const data = await login({ cpf, password });
-
-      localStorage.setItem("token", data.token);
-
-      setSuccess("Login feito com sucesso");
-      setError(null);
+      // Após login bem-sucedido, isAuthenticated torna-se true e o
+      // PublicRoute redireciona automaticamente para /dashboard.
+      await login(cpf, password);
     } catch (err: unknown) {
-      setSuccess(null);
-
-      if (axios.isAxiosError(err)) {
+      if (isAxiosError(err)) {
         setError(err.response?.data?.message || "Erro ao fazer login");
       } else {
         setError("Erro inesperado");
@@ -69,7 +64,6 @@ export function LoginPage() {
 
         <button type="submit">Entrar</button>
 
-        {success && <p>{success}</p>}
         {error && <p>{error}</p>}
       </form>
 
